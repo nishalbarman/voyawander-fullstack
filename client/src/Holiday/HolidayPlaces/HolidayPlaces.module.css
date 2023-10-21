@@ -1,0 +1,99 @@
+.place{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.HolidayPlaces_Div{
+    width: 100%;
+    background-color: aliceblue;
+     position: fixed;
+    margin-top: -84px;
+    padding-bottom: 20px;
+  
+}
+
+.place button{
+  background-color: #007bff;
+  font-weight: 400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.place button:hover{
+  background-color: white;
+  font-weight: 400;
+  color: blue;
+  font-size: large;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  .functionality {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 100px;
+  }
+.search{
+    margin-left: 20%;
+}
+
+  .search input{
+    height: 30px;
+}
+.search button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+margin-right:5px ;
+margin-left: -5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.select option{
+    height: 20px;
+}
+
+.select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    
+  }
+
+  .select::after {
+    content: '\25BC'; /* Unicode character for a down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #666;
+  }
+  
+  /* Style the select when it's focused */
+  .select:focus {
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle shadow on focus */
+  }
