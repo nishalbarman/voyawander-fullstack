@@ -39,6 +39,7 @@ export const Signup = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: values.name,
         email: values.email,
         password: values.pass,
       }),
