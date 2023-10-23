@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 // schemas
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  logtype: { type: Number, required: true }, // login type to check whether user logged using google or id pass
-  password: { type: String, required: true },
+  name: { type: String },
+  email: { type: String },
+  logtype: { type: Number }, // login type to check whether user logged using google or id pass
+  password: { type: String },
 });
 
 const productSchema = new mongoose.Schema({
