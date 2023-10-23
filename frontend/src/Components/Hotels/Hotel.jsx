@@ -30,17 +30,17 @@ const Hotel = () => {
   const fetchApiData = async () => {
     console.log("I am being called");
 
-    const server = process.env.REACT_APP_SERVER_URI
+    const server = import.meta.env.VITE_SERVER_URI;
 
     let url = null;
-    let primaryURL = `${server}/hotels?_page=${page}&_limit=12`;
+    let primaryURL = `${server}/products?category=hotels&page=${page}&limit=12`;
 
     if (search === "") {
       setSearchParams({ people: people });
-      primaryURL = `${server}/hotels?_page=${page}&_limit=12`;
+      primaryURL = `${server}/products?category=hotels&page=${page}&limit=12`;
     } else {
       setSearchParams({ location: search, people: people });
-      primaryURL = `${server}/hotels?q=${search}&_page=${page}&_limit=12`;
+      primaryURL = `${server}/products?category=hotels&q=${search}&page=${page}&limit=12`;
     }
 
     url = primaryURL;
@@ -50,22 +50,22 @@ const Hotel = () => {
       url = primaryURL;
     } else if (sortOrder === "aToZasc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=title&_order=asc`;
+      url = `${primaryURL}&sort=title&order=asc`;
     } else if (sortOrder === "aToZdesc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=title&_order=desc`;
+      url = `${primaryURL}&sort=title&order=desc`;
     } else if (sortOrder === "priceAsc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=price&_order=asc`;
+      url = `${primaryURL}&sort=price&order=asc`;
     } else if (sortOrder === "priceDesc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=price&_order=desc`;
+      url = `${primaryURL}&sort=price&order=desc`;
     } else if (sortOrder === "ratingsAsc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=rating&_order=asc`;
+      url = `${primaryURL}&sort=rating&order=asc`;
     } else if (sortOrder === "ratingsDesc") {
       setIsLoading(true);
-      url = `${primaryURL}&_sort=rating&_order=desc`;
+      url = `${primaryURL}&sort=rating&order=desc`;
     }
 
     console.log(url);

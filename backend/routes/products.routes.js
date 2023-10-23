@@ -47,6 +47,7 @@ router.get("/", async (req, res) => {
     msg = "No data!";
   }
 
+  res.setHeader("X-Total-Count", total);
   res.send({ total, data, msg });
 });
 
