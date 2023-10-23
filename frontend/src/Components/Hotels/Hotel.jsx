@@ -101,20 +101,28 @@ const Hotel = () => {
 
   useEffect(() => {
     fetchApiData();
-  }, [sortOrder, page, search]);
+  }, [sortOrder, page]);
 
-  const debounce = (duration) => {
-    let timer;
-    return (query) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        setPage(1);
-        setSearch(query);
-      }, duration);
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      fetchApiData();
+    }, 1000);
+
+    return () => {
+      clearTimeout(getData);
     };
+  }, [search]);
+  // const debounce = (duration) => {
+  //   let timer;
+  //   return (query) => {
+  //     clearTimeout(timer);
+  //     timer = setTimeout(() => {}, duration);
+  //   };
+  // };
+  const debounceSearch = (query) => {
+    setPage(1);
+    setSearch(query);
   };
-
-  const debounceSearch = debounce(800);
 
   const navigatePageTo = (id) => {
     navigate(`/hotelsingleinfo/:${id}`);
