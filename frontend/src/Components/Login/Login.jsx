@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { provider, auth } from "../../firebase";
+import { auth, provider } from "../../firebase";
 import Style from "../Login/Login.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserLogin } from "../../Redux/auth/action";

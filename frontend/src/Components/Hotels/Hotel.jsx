@@ -29,15 +29,18 @@ const Hotel = () => {
 
   const fetchApiData = async () => {
     console.log("I am being called");
+
+    const server = process.env.REACT_APP_SERVER_URI
+
     let url = null;
-    let primaryURL = `https://voyawander-json-szvk.onrender.com/hotels?_page=${page}&_limit=12`;
+    let primaryURL = `${server}/hotels?_page=${page}&_limit=12`;
 
     if (search === "") {
       setSearchParams({ people: people });
-      primaryURL = `https://voyawander-json-szvk.onrender.com/hotels?_page=${page}&_limit=12`;
+      primaryURL = `${server}/hotels?_page=${page}&_limit=12`;
     } else {
       setSearchParams({ location: search, people: people });
-      primaryURL = `https://voyawander-json-szvk.onrender.com/hotels?q=${search}&_page=${page}&_limit=12`;
+      primaryURL = `${server}/hotels?q=${search}&_page=${page}&_limit=12`;
     }
 
     url = primaryURL;
