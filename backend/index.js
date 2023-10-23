@@ -39,6 +39,9 @@ app.use("/products", require("./routes/products.routes"));
 app.use("/contact", require("./routes/contacts.routes"));
 app.use("/locations", require("./routes/location.routes"));
 app.use("/orders", require("./routes/orders.routes"));
+app.use("/*", (req, res) => {
+  res.send("Not allowed!");
+});
 
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);
