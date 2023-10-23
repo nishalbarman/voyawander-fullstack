@@ -43,10 +43,35 @@ const locationSchema = new mongoose.Schema(
   }
 );
 
+const orderSchema = new mongoose.Schema({
+  act_price: { type: String },
+  group_size: { type: String },
+  location: { type: String },
+  price_per_day: { type: String },
+  save_price: { type: String },
+  title: { type: String },
+  tour_length: { type: String },
+  title: { type: String },
+  first_N: { type: String },
+  last_N: { type: String },
+  email: { type: String },
+  phone: { type: String },
+  day: { type: String },
+  month: { type: String },
+  year: { type: String },
+  gender: { type: String },
+  nationality: { type: String },
+  c_holder: { type: String },
+  c_number: { type: String },
+  exp_day: { type: String },
+  cvv: { type: String },
+});
+
 // models
 const UserModel = mongoose.model("users", userSchema);
 const ProductModel = mongoose.model("products", productSchema);
 const MessageModel = mongoose.model("messages", messageSchema);
 const LocationModel = mongoose.model("locations", locationSchema);
+const OrderModel = mongoose.model("orders", orderSchema);
 
-module.exports = { UserModel, ProductModel, MessageModel, LocationModel };
+module.exports = { UserModel, ProductModel, MessageModel, LocationModel, OrderModel };

@@ -78,7 +78,24 @@ function Payment() {
     cvv: "",
   });
 
+  console.log("Store data=>", storedata);
+
+  const server = import.meta.env.VITE_SERVER_URI;
+
   const [payType, setPayType] = useState(true); // using single state var, by default card
+
+  const paymentSuccess = () => {
+    fetch(`${server}/orders/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...storedata, ...formdata }),
+    }).catch((er) => {
+      console.log(er);
+    });
+    navigate("/payment-success");
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -119,9 +136,6 @@ function Payment() {
       image: "https://rb.gy/6cdbi",
       handler: function (response) {
         navigate("/Payment-Success");
-        console.log(response);
-        // dispatch(removeSingleProduct());
-        // Update the state to indicate payment completion
       },
     };
 
@@ -1445,7 +1459,7 @@ function Payment() {
                           pin.third == 3 &&
                           pin.fourth == 7
                         ) {
-                          navigate("/payment-success");
+                          paymentSuccess();
                         } else {
                           toast({
                             description: "Payment failed",
