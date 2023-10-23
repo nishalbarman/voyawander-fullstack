@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { MessageModel } = require("../mongo/models");
+const { MessageModel } = require("../mongo/model");
 const mongoose = require("mongoose");
 
 const secret = process.env.SECRET || "xtdged";
