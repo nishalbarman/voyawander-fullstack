@@ -4,6 +4,7 @@ const { Router } = require("express");
 const { UserModel } = require("../mongo/model");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const mongoose = require("mongoose");
 
 const router = Router();
 
@@ -13,6 +14,13 @@ const secret = process.env.SECRET || "XYZ";
 
 router.post("/signup", async (req, res) => {
   try {
+    if (!req.body.password) {
+      return res.send({
+        status: false,
+        message: "Required fields are missing!",
+      });
+    }
+
     const salt = bcrypt.genSaltSync(10);
     const hashed_password = bcrypt.hashSync(req.body.password, salt);
     req.body.password = hashed_password;

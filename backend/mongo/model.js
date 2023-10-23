@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 // schemas
 const userSchema = new mongoose.Schema({
-  name: { type: String },
-  email: { type: String },
+  name: { type: String, required: true },
+  email: { type: String, required: true },
   logtype: { type: Number }, // login type to check whether user logged using google or id pass
-  password: { type: String },
+  password: { type: String, required: true },
 });
 
 const productSchema = new mongoose.Schema({
@@ -74,4 +74,10 @@ const MessageModel = mongoose.model("messages", messageSchema);
 const LocationModel = mongoose.model("locations", locationSchema);
 const OrderModel = mongoose.model("orders", orderSchema);
 
-module.exports = { UserModel, ProductModel, MessageModel, LocationModel, OrderModel };
+module.exports = {
+  UserModel,
+  ProductModel,
+  MessageModel,
+  LocationModel,
+  OrderModel,
+};
