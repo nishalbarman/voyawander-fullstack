@@ -11,7 +11,10 @@ router.post("/add", async (req, res) => {
     const message = new MessageModel(req.body);
     console.log(message);
     await message.save();
-    res.send({ status: true, message: "Message submitted!" });
+    res.send({
+      status: true,
+      message: "Thank you for reaching out to us.",
+    });
   } catch (err) {
     if (err instanceof mongoose.Error) {
       const errors = [];
