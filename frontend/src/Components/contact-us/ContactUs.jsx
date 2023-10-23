@@ -3,6 +3,8 @@ import styles from "./ContactUs.module.css";
 import axios from "axios";
 
 function ContactUs() {
+  const server = import.meta.env.VITE_SERVER_URI;
+
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformdata] = useState({
     email: "",
@@ -43,10 +45,7 @@ function ContactUs() {
             e.preventDefault();
             setIsLoading(true);
             axios
-              .post(
-                `https://https://voyawander-json-szvk.onrender.com/contact`,
-                formData
-              )
+              .post(`${server}/contact/add`, formData)
               .then((res) => {
                 alert("Message added!");
                 setIsLoading(false);

@@ -22,8 +22,20 @@ const productSchema = new mongoose.Schema({
 
 productSchema.index({ "$**": "text" }); // will help us in terms of searching for particular string
 
+const messageSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+    phone: { type: Number, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 // models
 const UserModel = mongoose.model("users", userSchema);
 const ProductModel = mongoose.model("products", productSchema);
+const MessageModel = mongoose.model("messages", messageSchema);
 
-module.exports = { UserModel, ProductModel };
+module.exports = { UserModel, ProductModel, MessageModel };

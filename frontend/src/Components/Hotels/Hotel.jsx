@@ -33,14 +33,14 @@ const Hotel = () => {
     const server = import.meta.env.VITE_SERVER_URI;
 
     let url = null;
-    let primaryURL = `${server}/products?category=hotels&page=${page}&limit=12`;
+    let primaryURL = `${server}/products?category=hotel&page=${page}&limit=12`;
 
     if (search === "") {
       setSearchParams({ people: people });
-      primaryURL = `${server}/products?category=hotels&page=${page}&limit=12`;
+      primaryURL = `${server}/products?category=hotel&page=${page}&limit=12`;
     } else {
       setSearchParams({ location: search, people: people });
-      primaryURL = `${server}/products?category=hotels&q=${search}&page=${page}&limit=12`;
+      primaryURL = `${server}/products?category=hotel&q=${search}&page=${page}&limit=12`;
     }
 
     url = primaryURL;
@@ -81,8 +81,8 @@ const Hotel = () => {
       );
       setPageNumbers(pageNumbersTemp);
       const finalData = res.data;
-      console.log(finalData);
-      setApiData(finalData);
+      console.log("Final data=>", finalData);
+      setApiData(finalData.data);
       setIsLoading(false);
     } catch (error) {
       setIsError(true);
@@ -163,13 +163,19 @@ const Hotel = () => {
             })}
           </div>
         )}
-        ;
+
         {currItems === 0 && isLoading === false ? (
           <h1 className={styles.no_items}>No Results Found !</h1>
         ) : (
           ""
         )}
-        ;
+
+        {!isLoading && apiData.length == 0 ? (
+          <h1 className={styles.no_items}>No data found !</h1>
+        ) : (
+          <></>
+        )}
+
         {isError && apiData.length === 0 ? (
           <h1 className={styles.no_items}>
             Oops !!! Error Occured While Loading the Page.
