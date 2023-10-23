@@ -54,8 +54,6 @@ function Payment() {
   const [chk, setchk] = useState(false);
   const [CardPay, setCardPay] = useState(true);
   const [RazorPay, setRazorPay] = useState(false);
-  const { singleProductData } = useContext(HolidayContext);
-  console.log(singleProductData); // udate the data from single Product page
 
   const [pin, setpin] = useState({
     first: "",

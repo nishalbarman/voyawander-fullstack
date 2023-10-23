@@ -49,6 +49,7 @@ function Navbar({ isWhiteBackground, isOfferVisible }) {
       e.preventDefault();
       dispatch(userLogOut());
       alert("Logged out ...");
+      navigate("/");
     } catch (er) {
       console.error(er);
     }

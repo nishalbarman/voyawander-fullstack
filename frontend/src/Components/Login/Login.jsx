@@ -9,6 +9,8 @@ import { setUserLogin } from "../../Redux/auth/action";
 import logo from "../../Images/logo_website.png";
 
 export const Login = () => {
+  const server = import.meta.env.VITE_SERVER_URI;
+
   const [values, setvalues] = useState({
     email: "",
     pass: "",
@@ -34,11 +36,27 @@ export const Login = () => {
 
     setIserror("");
     setSubmitButton(true);
-    signInWithEmailAndPassword(auth, values.email, values.pass)
-      .then(async (res) => {
+    fetch(`${server}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.pass,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
         setSubmitButton(false);
-        console.log(res);
-        navigate("/");
+        if (data.status == true) {
+          dispatch(setUserLogin({ isAuth: true }));
+          navigate("/");
+        } else {
+          alert(data.message);
+        }
       })
       .catch((error) => setIserror(error.message), setSubmitButton(false));
     console.log(values);

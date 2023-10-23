@@ -12,6 +12,9 @@ export const Signup = () => {
     email: "",
     pass: "",
   });
+
+  const server = import.meta.env.VITE_SERVER_URI;
+
   const [isError, setIserror] = useState("");
   const [submitbutton, setSubmitButton] = useState(false);
 
@@ -30,11 +33,26 @@ export const Signup = () => {
     }
     setIserror("");
     setSubmitButton(true);
-    createUserWithEmailAndPassword(auth, values.email, values.pass)
+    fetch(`${server}/auth/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.pass,
+      }),
+    })
       .then(async (res) => {
+        return res.json();
+      })
+      .then((data) => {
         setSubmitButton(false);
-        console.log(res);
-        navigate("/login");
+        if (data.status == true) {
+          navigate("/login");
+        } else {
+          alert(data.message);
+        }
       })
       .catch((error) => setIserror(error.message), setSubmitButton(false));
     console.log(values);
