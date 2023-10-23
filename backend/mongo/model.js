@@ -33,9 +33,20 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
+const locationSchema = new mongoose.Schema(
+  {
+    place: { type: String, required: true },
+    category: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 // models
 const UserModel = mongoose.model("users", userSchema);
 const ProductModel = mongoose.model("products", productSchema);
 const MessageModel = mongoose.model("messages", messageSchema);
+const LocationModel = mongoose.model("locations", locationSchema);
 
-module.exports = { UserModel, ProductModel, MessageModel };
+module.exports = { UserModel, ProductModel, MessageModel, LocationModel };

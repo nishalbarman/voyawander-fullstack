@@ -13,6 +13,7 @@ app.use(express.json());
 app.use("/auth", require("./routes/auth.routes"));
 app.use("/products", require("./routes/products.routes"));
 app.use("/contact", require("./routes/contacts.routes"));
+app.use("/locations", require("./routes/location.routes"));
 
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`);

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Filter() {
+  const server = import.meta.env.VITE_SERVER_URI;
+
   const [locations, setLocations] = useState([]);
 
   const navigate = useNavigate();
@@ -15,33 +17,12 @@ function Filter() {
 
   const makeRequest = async (value) => {
     try {
-      const res = await axios.get(
-        `https://voyawander-json-szvk.onrender.com/${value}Place`
-      );
+      const res = await axios.get(`${server}/locations?category=${value}`);
       console.log(res);
       setLocations(res.data);
     } catch (er) {
       console.error(er);
-      setLocations([
-        "Mumbai",
-        "Hydrabad",
-        "Bangalore",
-        "Leh",
-        "Srinagar",
-        "Pangong",
-        "Maldives",
-        "Male",
-        "Mauriitus",
-        "Mauritius",
-        "Dubai",
-        "Manali",
-        "Kargil",
-        "Munnar",
-        "Kochi",
-        "Bangalore",
-        "Mahabalipuram",
-        "Calicut",
-      ]);
+      setLocations(["Mumbai", "Hydrabad", "Bangalore"]);
     }
   };
 
