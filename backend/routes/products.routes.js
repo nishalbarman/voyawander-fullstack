@@ -1,8 +1,27 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const { ProductModel } = require("../mongo/model");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+const secret = process.env.SECRET || "XYZ";
+
+const auth = (req, res, next) => {
+  try {
+    const token = req.get("Authorization");
+    console.log(token);
+    if (token) {
+      const user = jwt.verify(token, secret);
+      req.userid = user._id;
+      next();
+      return;
+    }
+    return res.send({ status: false, data: [], message: "Invalid Access!" });
+  } catch (er) {
+    res.send({ status: false, data: [], message: "Invalid Access!" });
+  }
+};
+
+router.get("/", auth, async (req, res) => {
   const page = req.query.page || 1;
   const limit = req.query.limit || 10;
   const skip = limit * (page - 1);

@@ -5,10 +5,15 @@ import styles from "./HotelComponent.module.css";
 import { useSearchParams } from "react-router-dom";
 import BorderBox from "../common-styles/BorderBox";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Hotel = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   // const {id} = useParams();
+
+  const { isAuth, token } = useSelector((state) => state.auth);
+
+  console.log(token);
 
   console.log(searchParams.get("location"));
   const navigate = useNavigate();
@@ -71,9 +76,14 @@ const Hotel = () => {
     console.log(url);
 
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: token,
+        },
+      });
       setCurrItems(res.data.length);
-      const totalItems = res.headers.get(`X-Total-Count`);
+      const totalItems = res.data.total;
+      console.log("total items=>", totalItems);
       const totalPagesFinal = Math.ceil(totalItems / 12);
       let pageNumbersTemp = Array.from(
         { length: totalPagesFinal },

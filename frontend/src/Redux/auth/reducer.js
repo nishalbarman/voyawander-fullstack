@@ -6,7 +6,7 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_LOGIN":
-      return { ...state, isAuth: true, user: action.payload };
+      return { ...state, ...action.payload };
 
     case "USER_LOGOUT":
       return initialState;

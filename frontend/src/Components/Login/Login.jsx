@@ -52,7 +52,7 @@ export const Login = () => {
       .then((data) => {
         setSubmitButton(false);
         if (data.status == true) {
-          dispatch(setUserLogin({ isAuth: true }));
+          dispatch(setUserLogin({ isAuth: true, token: data.token }));
           navigate("/");
         } else {
           alert(data.message);
